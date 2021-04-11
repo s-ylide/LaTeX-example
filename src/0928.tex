@@ -1,0 +1,231 @@
+\input{preamble.tex}
+\input{template.tex}
+\titleof{10/05}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}[(1)]
+    \item d'Alembert の判定法を使う．
+    \begin{itemize}
+        \item $f(x)=\displaystyle\sum_{n=0}^\infty \dfrac{x^n}{\sqrt{n+1}}$について\\
+        $a_n=\dfrac{1}{\sqrt{n+1}}$とする．
+        \begin{align}
+            r=\lim_{n\to\infty}\left|\dfrac{a_n}{a_{n+1}}\right|
+            &=\lim_{n\to\infty}\dfrac{\sqrt{n+2}}{\sqrt{n+1}}\\
+            &=\lim_{n\to\infty}\sqrt{\dfrac{1+\frac{2}{n}}{1+\frac{1}{n}}}\\
+            &=1\\
+            \therefore r &= 1
+        \end{align}
+        である．
+        \item $g(x)=\displaystyle\sum_{n=0}^\infty{}_{2n}C_n x^n$について\\
+        $b_n={}_{2n}C_n$とする．
+        \begin{align}
+            s=\lim_{n\to\infty}\left|\dfrac{b_n}{b_{n+1}}\right|
+            &=\lim_{n\to\infty}\dfrac{(2n)!}{(n!)^2}\dfrac{(n+1)!^2}{(2n+2)!}\\
+            &=\lim_{n\to\infty}\dfrac{(n+1)^2}{(2n+1)(2n+2)}\\
+            &=\lim_{n\to\infty}\dfrac{(1+\frac{1}{n})^2}{(2+\frac{1}{n})(2+\frac{2}{n})}\\
+            &=\dfrac{1}{4}\\
+            \therefore s&=\dfrac{1}{4}
+        \end{align}
+        である．
+    \end{itemize}
+    \item 
+    \begin{itemize}
+        \item $f(r)$について\\
+        $j(x)=\dfrac{1}{\sqrt{x+1}}$は$x>-1$で単調減少なので，
+        簡単な面積比較から
+        \begin{align}
+            \sum_{n=0}^m j(n)>\int_0^{m}j(x)dx
+            &=\eval[2\sqrt{x+1}|_0^m\\
+            &=2\sqrt{m+1}-2
+        \end{align}
+        であり，$m\to\infty$とすると右辺は正の無限大に発散する．よって，
+        \begin{align}
+            \sum_{n=0}^\infty j(n)=\infty
+        \end{align}
+        となり，$f(r)$は正の無限大に発散する．
+        \item $f(-r)$について\\
+        $a_n=\dfrac{1}{\sqrt{n+1}}$は$n$の単調減少数列であり，
+        $\displaystyle\lim_{n\to\infty}a_n=0$である．よって，9/28日の資料1 p.7の系2により，
+        $f(-r)$は収束する．
+        収束値は，Riemann zeta関数$\zeta(s)$を用いて$f(-r)=(1-\sqrt{2})\zeta\displaystyle\qty(\dfrac{1}{2})$と書ける．
+        \item $g(s)$について\\
+        $n\ge0$に対し，
+        \begin{align}
+            I_n := \int_0^\frac{\pi}{2}(\sin x)^ndx
+        \end{align}
+        と定義する．$n\ge 2$のとき
+        \begin{align}
+            I_n &= \int_0^\frac{\pi}{2}(\sin x)^{n-1}(\sin x)dx\\
+            &=\eval[-(\sin x)^{n-1}\cos x|_0^\frac{\pi}{2}-\int_0^\frac{\pi}{2}-(n-1)(\sin x)^{n-2}(\cos x)^2dx\\
+            &=(n-1)\qty(\int_0^\frac{\pi}{2}(\sin x)^{n-2}dx-\int_0^\frac{\pi}{2}(\sin x)^{n-2}(\sin x)^2dx)\\
+            &=(n-1)(I_{n-2}+I_n)\\
+            nI_n &= (n-1)I_{n-2}\label{eq:wallis_rec}\\
+            nI_{n-1}I_n &= (n-1)I_{n-2}I_{n-1}\\
+            &=1\cdot I_0I_1\\
+            &=\frac{\pi}{2}
+        \end{align}
+        が成り立つ．また，\eqref{eq:wallis_rec}式から，
+        \begin{align}
+            I_{2n}
+            &=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot\cdots\cdot\frac{1}{2}\cdot I_0\\
+            &=\frac{(2n)(2n-1)}{(2n)^2}\cdot\frac{(2n-2)(2n-3)}{(2n-2)^2}\cdot\cdots\cdot\frac{2\cdot 1}{2^2}\cdot \frac{\pi}{2}\\
+            &=\frac{(2n)!}{2^2n^2\cdot 2^2(n-1)^2\cdots 2^2}\cdot \frac{\pi}{2}\\
+            &=\frac{(2n)!}{4^n(n!)^2}\cdot \frac{\pi}{2}\\
+            &={}_{2n}C_n\qty(\frac{1}{4})^n\cdot \frac{\pi}{2}
+        \end{align}
+        である．ところで，$\displaystyle 0\le x\le \frac{\pi}{2}$に対し
+        \begin{align}
+            0\le \sin x\le 1
+        \end{align}
+        であるから，$n\ge 1$のとき
+        \begin{equation}
+            0\le(\sin x)^{n+1}\le (\sin x)^{n}\le(\sin x)^{n-1}
+        \end{equation}
+        \begin{equation}
+            0\le I_{n+1}\le I_{n}\le I_{n-1}
+        \end{equation}
+        を得る．
+        \begin{equation}
+            I_{n}I_{n+1}\le (I_{n})^2\le I_{n-1}I_{n}
+        \end{equation}
+        \begin{equation}
+            0< \frac{1}{n+1}\frac{\pi}{2}\le (I_{n})^2\le \frac{1}{n}\frac{\pi}{2}\label{eq:wallis_eval}
+        \end{equation}
+        $I_{n}>0$であるから
+        \begin{equation}
+            0< \frac{1}{\sqrt{n+1}}\sqrt{\frac{\pi}{2}}\le I_{n}
+        \end{equation}
+        $n\to2n$として
+        \begin{equation}
+            0< \frac{1}{\sqrt{2n+1}}\sqrt{\frac{\pi}{2}}\le I_{2n}={}_{2n}C_n\qty(\frac{1}{4})^n\cdot \frac{\pi}{2}
+        \end{equation}
+        \begin{equation}
+            0< \frac{1}{\sqrt{2n+1}}\sqrt{\frac{2}{\pi}}\le I_{2n}={}_{2n}C_n\qty(\frac{1}{4})^n
+        \end{equation}
+        $n:=0,1,\dots,m$として両辺足し合わせて
+        \begin{equation}
+            0< \sqrt{\frac{2}{\pi}}\sum_{n=0}^{m} \frac{1}{\sqrt{2n+1}}\le \sum_{n=0}^{m} {}_{2n}C_n\qty(\frac{1}{4})^n
+        \end{equation}
+        簡単な面積比較から，
+        \begin{equation}
+            \int_0^m \frac{1}{\sqrt{2x+1}}dx = \sqrt{2m+1}-1 \le \sum_{n=0}^{m} \frac{1}{\sqrt{2n+1}}
+        \end{equation}
+        よって
+        \begin{equation}
+            \sqrt{\frac{2}{\pi}} (\sqrt{2m+1}-1) \le \sum_{n=0}^{m} {}_{2n}C_n\qty(\frac{1}{4})^n
+        \end{equation}
+        右辺は$m\to\infty$で正の無限大に発散するので，追い出しの原理により
+        \begin{equation}
+            \sum_{n=0}^{\infty} {}_{2n}C_n\qty(\frac{1}{4})^n=\infty \qq{(発散)}
+        \end{equation}
+        となる．$g(s)$は正の無限大に発散する．
+
+        \item $g(-s)$について\\
+        $f(-r)$のときと同様に，べき級数$g(-s)$の係数$b_n$が単調減少数列であることとそれが$0$に収束することから交代級数$g(-s)$が収束することを示す．
+        まず，$\displaystyle\lim_{n\to\infty}{}_{2n}C_n\displaystyle\qty(\frac{1}{4})^n=0$であることを示す．\\
+        先の\eqref{eq:wallis_eval}式の右辺は$n\to\infty$で$0$に収束するので，はさみうちの原理により
+        \begin{align}
+            \lim_{n\to\infty}I_{n}=0\label{eq:lim_of_wallis}
+        \end{align}
+        であるから，\eqref{eq:lim_of_wallis}と合わせて
+        \begin{align}
+            \lim_{n\to\infty}\frac{(2n)!}{4^n(n!)^2}\cdot \frac{\pi}{2}&=0\\
+            \lim_{n\to\infty}\frac{(2n)!}{4^n(n!)^2}&=0\\
+            \lim_{n\to\infty}{}_{2n}C_n\qty(\frac{1}{4})^n&=0
+        \end{align}
+        である．よって，$g(-s)$は収束する．
+        
+        べき級数
+        \begin{equation}
+            \frac{1}{\sqrt{{1-z^2}}}=\sum_{n=0}^{\infty}\frac{(2n-1)!!}{(2n)!!}z^{2n}=\sum_{n=0}^{\infty}{}_{2n}C_n\qty(\frac{1}{4})^n z^{2n}
+        \end{equation}
+        の収束半径が$1$であることと$g(-s)$が収束することから，$g(-s)$の値はこの級数に$z:=i$を代入することで得られ，
+        \begin{align}
+            \frac{1}{\sqrt{{1-i^2}}}
+            &=\sum_{n=0}^{\infty}{}_{2n}C_n\qty(\frac{1}{4})^n i^{2n}\\
+            \frac{1}{\sqrt{{1-(-1)}}}
+            &=\sum_{n=0}^{\infty}{}_{2n}C_n\qty(\frac{1}{4})^n (-1)^{n}\\
+            \frac{1}{\sqrt{2}}
+            &=g(-s)
+        \end{align}
+        である．
+    \end{itemize}
+    \item 
+    \begin{itemize}
+        \item $h(1)$が発散すること\\
+        $\sqrt{n}\ge\qty[\sqrt{n}]$であるから，$m\ge 2$に対して
+        \begin{equation}
+            \sum_{n=0}^{m^2}(\sqrt{n}-\qty[\sqrt{n}])
+            \ge
+            \sum_{l=2}^{m}(\sqrt{l^2-1}-\qty[\sqrt{l^2-1}])
+        \end{equation}
+        である．
+
+        \begin{equation}
+            \qty[\sqrt{l^2-1}]=l-1
+        \end{equation}
+        を示す．
+        $\sqrt{x}$は$x$の単調増加関数であり，$l\ge 2$に対し
+        \begin{equation}
+            (l-1)^2=l^2-2l+1\le l^2-1<l^2
+        \end{equation}
+        であるから
+        \begin{equation}
+            l-1\le \sqrt{l^2-1}<l
+        \end{equation}
+        \begin{equation}
+            \qty[\sqrt{l^2-1}]=l-1
+        \end{equation}
+        である．
+
+        \begin{equation}
+            \sqrt{l^2-1}-\qty[\sqrt{l^2-1}]>\frac{2}{3}
+        \end{equation}
+        を示す．
+
+        \begin{align}
+            \sqrt{l^2-1}-\qty[\sqrt{l^2-1}]
+            &=\sqrt{l^2-1}-(l-1)\\
+            &=\frac{(l^2-1)-(l-1)^2}{\sqrt{l^2-1}+(l-1)}
+            =\frac{2(l-1)}{\sqrt{l^2-1}+(l-1)}\\
+            &=\frac{2}{\sqrt{\dfrac{l+1}{l-1}}+1}\\
+            &\ge\frac{2}{\sqrt{\dfrac{(l+1)+2(l-2)}{l-1}}+1}
+            =\frac{2}{\sqrt{3}+1}\\
+            &>\frac{2}{2+1}
+            =\frac{2}{3}\\
+        \end{align}
+        よって示せた．
+        以上から，
+        \begin{equation}
+            \sum_{n=0}^{m^2}(\sqrt{n}-\qty[\sqrt{n}])
+            \ge
+            \sum_{l=2}^{m}(\sqrt{l^2-1}-\qty[\sqrt{l^2-1}])
+            >\dfrac{2(m-1)}{3}
+        \end{equation}
+        が従う．$m\to\infty$とすると，右辺は正の無限大に発散するから，追い出しの原理により
+        \begin{equation}
+            \sum_{n=0}^{\infty}(\sqrt{n}-\qty[\sqrt{n}])=\infty \qq{(発散)}
+        \end{equation}
+        であるから，$h(1)$は発散する．
+
+        \item $h(x)$の収束半径\\
+        $h(x)$が$\abs{x}<1$で収束することを優級数法によって示す．\\
+        $\abs{x}<1$であるとする．
+        \begin{align}
+            \abs{\sqrt{n}-\qty[\sqrt{n}]}
+            &=\sqrt{n}-\qty[\sqrt{n}]\\
+            &<1
+        \end{align}
+        であることから，べき級数$i(x)=\displaystyle\sum_{n=0}^\infty x^n$について
+        \begin{equation}
+            \forall n\in \mathbb{Z}_{\ge 0} \quad (\abs{(\sqrt{n}-\qty[\sqrt{n}])x^n}\le x^n)
+        \end{equation}
+        が成り立ち，$i(x)$は収束することから優級数法により$h(x)$も収束する．$h(x)$の収束半径は$1$である．
+    \end{itemize}
+\end{enumerate}
+
+
+\end{document}

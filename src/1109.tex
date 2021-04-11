@@ -1,0 +1,260 @@
+\input{preamble.tex}
+\input{template.tex}
+\titleof{11/09}
+
+\begin{document}
+    
+\maketitle
+
+\begin{enumerate}[(1)]
+    \item 
+    \begin{enumerate}[(i)]
+        \item $\sqrt{x^2-1}=t-x$とおくと，$t>0$で
+        \begin{align}
+            \sqrt{x^2-1}&=t-x\\
+            x^2-1&=t^2-2tx+x^2\\
+            x&=\frac{t^2+1}{2t}
+        \end{align}
+        これを$t$で微分すると，
+        \begin{align}
+            \dv{x}{t} &=\frac{1}{2}(1-\frac{1}{t^2})\\
+            &=\frac{t^2-1}{2t^2}\\
+            &=\frac{2x^2-2+2x\sqrt{x^2-1}}{2t^2}\\
+            &=\frac{\sqrt{x^2-1}(\sqrt{x^2-1}+x)}{t^2}\\
+            &=\frac{(t-x)t}{t^2}\\
+            &=\frac{t-x}{t}
+        \end{align}
+        である．よって，
+        \begin{align}
+            \int \frac{\dd{x}}{\sqrt{x^2-1}}
+            &= \int \frac{\dv{x}{t}}{t-x}\dd{t}\\
+            &= \int \frac{1}{t}\dd{t}\\
+            &= \log{t} + C \qq{($C$は任意)}\\
+            &= \log(x+\sqrt{x^2-1}) + C
+        \end{align}
+        である．
+        \item 
+        \begin{align}
+            I
+            &=\int^2_0 \frac{\dd{x}}{\sqrt{\abs{x^2-1}}}\\
+            &=\int^1_0 \frac{\dd{x}}{\sqrt{1-x^2}} + \int^2_1 \frac{\dd{x}}{\sqrt{x^2-1}}\\
+            &=\lim_{s\to 1-0}\eval[\arcsin{x}|^s_{x\coloneqq 0} + \lim_{s\to 1+0}\eval[\log(x+\sqrt{x^2-1}) |^2_{x\coloneqq s}\\
+            &=\frac{\pi}{2} + \log(2+\sqrt{3})
+        \end{align}
+        である．
+    \end{enumerate}
+    \item 
+    \begin{enumerate}[(i)]
+        \item $\displaystyle \lim_{x\to\infty}f(x)=0$を示す．
+        \begin{proof}
+            \begin{equation}
+                \exists \varepsilon _{> 0}\, \exists x\, [f(x) = -\varepsilon]
+            \end{equation}
+            と仮定する．
+
+            $\varepsilon > 0$をとる．
+            $f(x)= -\varepsilon$となる$x$を1つとり，$s$とする．$f(x)$は広義単調減少ゆえ
+            \begin{equation}
+                t \ge s \to f(t)\le f(s) = -\varepsilon
+            \end{equation}
+            であるから，$t>s$に対し
+            \begin{align}
+                \int^t_0 f(x) \dd{x} 
+                &= \int^s_0 f(x) \dd{x} + \int^t_s f(x) \dd{x} \\ 
+                &\le \int^s_0 f(x) \dd{x} + \int^t_s (-\varepsilon)\dd{x} \\ 
+                &= \int^s_0 f(x) \dd{x} -(t-s)\varepsilon \\ 
+                &= -\infty\quad (\qq*{as} t\to \infty)
+            \end{align}
+            となるが，これは$I$の収束に反するので矛盾である．よって
+            \begin{align}
+                \forall \varepsilon _{> 0}\, &\forall x\, [f(x) \ne -\varepsilon]\\
+                \therefore &\forall x\, [f(x) \ge 0] \label{eq:fx_ge_0}
+            \end{align}
+            である．すると，$f(x)$の値域の下限が存在するので，それを$l$とおくと明らかに$l\ge 0$．
+            $t>0$に対し
+            \begin{align}
+                \int^t_0 f(x) \dd{x} 
+                &\ge \int^t_0 l \dd{x} \\
+                &= lt
+            \end{align}
+            であって右辺は$t\to\infty$の極限で収束するから$l=0$である．
+
+            改めて$\varepsilon > 0$をとる．
+            下限の定義より，$\varepsilon$に対して$\delta\ge 0$が存在して$f(\delta)<l+\varepsilon=\varepsilon$を満たす．
+
+            $f(x)$は広義単調減少ゆえ
+            \begin{equation}
+                x > \delta \to x \ge \delta \to f(x)\le f(\delta) < \varepsilon
+            \end{equation}
+            であるから，\eqref{eq:fx_ge_0}式と合わせて$\abs{f(x)}<\varepsilon$，すなわち
+            \begin{equation}
+                \lim_{x\to\infty}f(x)=0
+            \end{equation}
+            である．
+        \end{proof}
+        \item 
+        \begin{equation}
+            \lim_{x\to\infty}f(x)=0
+        \end{equation}
+        すなわち
+        \begin{equation}
+            \forall \varepsilon _{>0} \, \exists \delta [x>\delta \to \abs{f(x)}<\varepsilon]
+        \end{equation}
+        であり，\eqref{eq:fx_ge_0}式と合わせて$\varepsilon \coloneqq 1$に対して$\delta $が存在して
+        \begin{align}
+            x>\delta &\to f(x)<1\\
+            \therefore x>\delta &\to \{f(x)\}^2 < f(x)<1
+        \end{align}
+        を満たす．したがって
+        \begin{align}
+            0\le \int^\infty_\delta \{f(x)\}^2 \dd{x} 
+            &< \int^\infty_\delta f(x) \dd{x} \\
+            &\le \int^\infty_0 f(x) \dd{x} \\
+            &= I 
+        \end{align}
+        であるので，$\displaystyle J=\int^\infty_0 \{f(x)\}^2 \dd{x}$の上界として$\displaystyle I+\int^\delta_0 f(x)\dd{x}$がある．
+
+        関数$\displaystyle j(t)=\int^t_0 \{f(x)\}^2 \dd{x} $を考える．
+        \begin{itemize}
+            \item $\exists x \ [f(x)=0]$のとき\\
+            そのような$x$をとり$c$とする．$J=j(c)$より収束する．
+
+            \item そうでないとき，すなわち$f(x)>0$のとき\\
+            $j(t)$は単調増加である．また，$j(t)$の値域は上に有界なので$\displaystyle J=\lim_{t\to\infty}j(t)$は収束する．
+        \end{itemize}
+        以上から$\displaystyle J=\int^\infty_0 \{f(x)\}^2 \dd{x}$は収束する．
+    \end{enumerate}
+    \item \
+    \begin{itemize}
+        \item $\displaystyle I=\int^1_0 x^5 \qty(\log \frac{1}{x^4})^\frac{3}{2} \dd{x} = \frac{\sqrt{\pi}}{6\sqrt{6}}$
+        
+        $\displaystyle x=e^{-\frac{1}{6}t}$とおく．
+        \begin{align}
+            I
+            &=\int^1_0 x^5 \qty(\log \frac{1}{x^4})^\frac{3}{2} \dd{x}\\
+            &=\int^0_{\infty} e^{-\frac{5}{6}t} \qty(\log e^{\frac{2}{3}t})^\frac{3}{2} \qty(-\frac{1}{6})e^{-\frac{1}{6}t}\dd{t}\\
+            &=\frac{1}{6}\int^\infty_0 e^{-t} \qty(\frac{2}{3}t)^\frac{3}{2}\dd{t}\\
+            &=\frac{1}{6}\qty(\frac{2}{3})^\frac{3}{2}\int^\infty_0 e^{-t} t^\frac{3}{2}\dd{t}\\
+            &=\frac{2}{9\sqrt{6}}\Gamma(\frac{5}{2})\\
+            &=\frac{2}{9\sqrt{6}} \cdot \frac{3}{2} \Gamma(\frac{3}{2})\\
+            &=\frac{2}{9\sqrt{6}} \cdot \frac{3}{2} \cdot \frac{1}{2} \Gamma(\frac{1}{2})\\
+            &=\frac{\sqrt{\pi}}{6\sqrt{6}} \\
+        \end{align}
+        である．
+
+        \item $J=\cfrac{\displaystyle \int^1_0 (1-x^3)^{-\frac{1}{2}} \dd{x}}{\displaystyle \int^1_0 (1-x^3)^{\frac{1}{2}} \dd{x}} = \dfrac{5}{3}$
+        
+        $1-x^3 = t$とおく．
+        \begin{align}
+            J
+            &=\dfrac{ \int^1_0 (1-x^3)^{-\frac{1}{2}} \dd{x}}{ \int^1_0 (1-x^3)^{\frac{1}{2}} \dd{x}}\\
+            &=\dfrac{ \int^0_1 t^{-\frac{1}{2}} \qty(-\frac{1}{3})(1-t)^{-\frac{2}{3}}\dd{t}}{ \int^0_1 t^{\frac{1}{2}}\qty(-\frac{1}{3})(1-t)^{-\frac{2}{3}} \dd{t}}\\
+            &=\dfrac{ \int^1_0 t^{-\frac{1}{2}} (1-t)^{-\frac{2}{3}}\dd{t}}{ \int^1_0 t^{\frac{1}{2}} (1-t)^{-\frac{2}{3}} \dd{t}}\\
+            &=\dfrac{B(\frac12,\frac13)}{B(\frac32,\frac13)}\\
+            &=\dfrac{\Gamma(\frac12)\Gamma(\frac13)}{\Gamma(\frac56)}\cdot \dfrac{\Gamma(\frac{11}{6})}{\Gamma(\frac32)\Gamma(\frac13)}\\
+            &=\dfrac{\Gamma(\frac12)}{\Gamma(\frac56)}\cdot \dfrac{\frac{5}{6}\Gamma(\frac{5}{6})}{\frac{1}{2}\Gamma(\frac12)}\\
+            &=\frac53\\
+        \end{align}
+    \end{itemize}
+    \item \begin{enumerate}[(a)]
+        \item 
+        \begin{align}
+            \qq{$AB$の傾き} h_1 &\coloneqq \frac{f(b)-f(a)}{b-a}\\
+            \qq{$BC$の傾き} h_2 &\coloneqq \frac{f(c)-f(b)}{c-b}\\
+            \qq{$AC$の傾き} h_3 &\coloneqq \frac{f(c)-f(a)}{c-a}
+        \end{align}
+        とする．$f(x)$は下に凸なので
+        \begin{align}
+            \frac{f(a)(c-b)+f(c)(b-a)}{(c-b) + (b-a)} &\ge f(b)\\
+            \frac{f(a)(c-b)+f(c)(b-a)}{c-a} - f(a) &\ge f(b) - f(a)\\
+            f(c)\frac{b-a}{c-a} - f(a)\frac{b-a}{c-a} &\ge f(b) - f(a)\\
+            \frac{f(c)-f(a)}{c-a} &\ge \frac{f(b)-f(a)}{b-a}\\
+            \therefore h_3 &\ge h_1
+        \end{align}
+        である．
+        $a,c$を入れ替えることで，$h_3\le h_2$を得る．よって
+        \begin{equation}
+            h_1 \le h_3 \le h_2
+        \end{equation}
+        がわかる．
+
+        \begin{lemma}
+            $\forall x_1<\forall x_2$に対し，
+            $m=\dfrac{g(x_2)-g(x_1)}{x_2-x_1}$とすると
+            \begin{equation}
+                g^\prime(x_1)<m, g^\prime(x_2)>m
+            \end{equation}
+            である．
+            \begin{proof}
+                背理法で示す．
+
+                $g^\prime(x_1)\ge m$と仮定する．
+                $g^\prime(x)$は単調増加ゆえ
+                \begin{align}
+                    x>x_1 &\to g^\prime(x)>g^\prime(x_1)\ge m\\
+                    \therefore \int^{x_2}_{x_1} g^\prime(x)\dd{x} 
+                    &> \int^{x_2}_{x_1} g^\prime(x_1)\dd{x}\\
+                    &= (x_2-x_1)g^\prime(x_1)\\
+                    &\ge (x_2-x_1)m\\
+                    &= g(x_2)-g(x_1)
+                \end{align}
+                であるが，これは$\displaystyle\int^{x_2}_{x_1} g^\prime(x)\dd{x} = g(x_2)-g(x_1)$に矛盾する．したがって$g^\prime(x_1)< m$である．
+
+                同様にして$g^\prime(x_2)> m$が示される．
+            \end{proof}
+        \end{lemma}
+
+        $g(x)\in C^2$は$g^{\prime\prime}(x)>0$とする．このとき，$\forall x_1<\forall x_2, \forall t \in (0,1)$に対し
+        \begin{equation}
+            (1-t)g(x_1)+tg(x_2)>g((1-t)x_1+tx_2) \qq{(狭義の凸)}
+        \end{equation}
+        が成り立つことを示す．
+        \begin{proof}
+            $x_1<x_2$を任意にとる．
+            \begin{equation}
+                h(t)=(1-t)g(x_1)+tg(x_2) - g((1-t)x_1+tx_2)
+            \end{equation}
+            とおく．
+            \begin{equation}
+                h^{\prime}(t)=g(x_2)-g(x_1)-\qty((x_2-x_1)g^{\prime}(x_1+t(x_2-x_1)))
+            \end{equation}
+            から$h^{\prime}(t)$は$[0,1]$で連続で，中間値の定理より，$c \in (0,1)$が存在して
+            \begin{equation}
+                h^{\prime}(c) = 0
+            \end{equation}
+            を満たすから，そのような$c$を一つとる．
+            \begin{equation}
+                h^{\prime\prime}(t)=-(x_2-x_1)^2\qty(g^{\prime\prime}(x_1+t(x_2-x_1)))<0
+            \end{equation}
+            から$h^{\prime}(t)$は単調減少なので，$h(0)=0, h(1)=0, h^{\prime}(0)>0, h^{\prime}(1)<0$とあわせて
+            \begin{align}
+                0<t<c &\to h(t)>0\\
+                c<t<1 &\to h(t)>0
+            \end{align}
+            である．
+            また，
+            \begin{align}
+                h(c)
+                &=h(0)+\int^c_0 h^\prime(t)\dd{t}\\
+                &=\int^c_0 h^\prime(t)\dd{t}
+            \end{align}
+            であるが$h^\prime(0)>0, 0\le t\le c \to h^\prime(t)\ge 0$により$h(c)>0$が従う．
+
+            以上から
+            \begin{equation}
+                (1-t)g(x_1)+tg(x_2)>g((1-t)x_1+tx_2)
+            \end{equation}
+            が成り立つ．
+        \end{proof}
+        また，先の$h(t)$で$t\coloneqq 0, 1$とすると不等式に等号がついたもの，すなわち
+
+        $\forall x_1<\forall x_2, \forall t \in [0,1]$に対して
+        \begin{equation}
+            (1-t)g(x_1)+tg(x_2)\ge g((1-t)x_1+tx_2)
+        \end{equation}
+        が得られる．よって$g(x)$のグラフは下に凸である．
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
+        

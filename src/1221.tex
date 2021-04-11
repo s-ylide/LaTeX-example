@@ -1,0 +1,379 @@
+\input{preamble.tex}
+\input{template.tex}
+
+\titleof{12/21}
+
+\pagestyle{fancy}
+\rhead{第11週課題-biseki1221.pdf}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}[(1)]
+    \item \begin{enumerate}[(i)]
+        \item \begin{align}
+            &C_1:
+            \begin{cases}
+                x=\cos t\\
+                y=\sin t
+            \end{cases}
+            ,\frac{3}{4}\pi\le t\le \frac{7}{4}\pi\\
+            &C_2:
+            \begin{cases}
+                x=- t\\
+                y= t
+            \end{cases}
+            ,-\frac{1}{\sqrt{2}}\le t\le \frac{1}{\sqrt{2}}
+        \end{align}
+        とすると，$C_1+C_2$は$\partial \Omega$と同じ向きの区分的$C^1$-級曲線である．
+        線積分の定義より
+        \begin{align}
+            I
+            &=\int_{\partial \Omega} y \dd{x}+x^2\dd{y}\\
+            &=\int_{C_1} y \dd{x}+x^2\dd{y}+\int_{C_2} y \dd{x}+x^2\dd{y}\\
+            &=\int^{\frac{7}{4}\pi}_{\frac{3}{4}\pi} (-\sin^2t+\cos^3t)\dd{t}+\int^\frac{1}{\sqrt{2}}_{-\frac{1}{\sqrt{2}}} (t\cdot(-1)+t^2)\dd{t}\\
+            &=-\frac{\pi}{2}+\eval[\frac{3}{4}\sin t+\frac{1}{12}\sin 3t|^{\frac{7}{4}\pi}_{t\coloneqq \frac{3}{4}\pi} +2\eval[\frac{t^3}{3}|^\frac{1}{\sqrt{2}}_{t\coloneqq 0}\\
+            &=-\frac{\pi}{2}+\frac{1}{\sqrt{2}}\qty(\frac{3}{4}\cdot(-1-1)+\frac{1}{12}\cdot(-1-1))+2\cdot\frac{1}{3}\cdot\frac{1}{2\sqrt{2}}\\
+            &=-\frac{\pi}{2}-\frac{5}{6}\sqrt{2}+\frac{1}{6}\sqrt{2}\\
+            \therefore
+            I
+            &=-\frac{\pi}{2}-\frac{2}{3}\sqrt{2}
+        \end{align}
+        である．
+        \item Greenの定理により，$I$は次の$\Omega$上の重積分と等しい:
+        \begin{align}
+            I
+            &=\iint_\Omega (2x-1)\dd{x}\dd{y}\\
+            \intertext{ほぼ全単射な写像によって極座標に変換すると}
+            &=\iint_{\substack{0\le r\le 1\\\frac{3}{4}\pi\le \theta\le \frac{7}{4}\pi}} (2r\cos\theta-1)\JacobiPolar\dd{r}\dd{\theta}\\
+            &=\int^{\frac{7}{4}\pi}_{\frac{3}{4}\pi} \qty(\frac{2}{3}\cos\theta-\frac{1}{2})\dd{\theta}\\
+            &=\frac{2}{3}\eval[ \sin\theta |^{\frac{7}{4}\pi}_{\frac{3}{4}\pi} -\frac{\pi}{2}\\
+            \therefore
+            I
+            &=-\frac{\pi}{2}-\frac{2}{3}\sqrt{2}
+        \end{align}
+        と計算することができ，値は(i)のものと一致する．
+        \item 微分1-形式
+        \begin{align}
+            \omega = g(x,y) \dd{x} + ye^{x^2}\dd{y}
+        \end{align}
+        を考える．$\exd:\Omega^1(\mathbb{R}^2)\to\Omega^2(\mathbb{R}^2)$を外微分とすると，$\omega$が閉形式，すなわち$\exd(\omega) = 0$となるとき，$g(x,y)$が$\mathbb{R}^2$上で定義されればPoincaréの補題により$\omega$は完全形式である．
+
+        \begin{align}
+            g(x,y)=xy^2e^{x^2}
+        \end{align}
+        のとき，
+        \begin{align}
+            \exd(\omega)
+            &=\qty(\pdv{x} (ye^{x^2})-\pdv{y}(g(x,y)) )\dd{x}\wedge\dd{y}\\
+            &=\qty(2xye^{x^2}-2xye^{x^2} )\dd{x}\wedge\dd{y}\\
+            &=0
+        \end{align}
+        となるから，
+        \begin{align}
+            J
+            &=\int_{\partial \Omega}\omega\\
+            &=0
+        \end{align}
+        となる．
+        したがって，$J=0$となる関数$g(x,y)$として$g(x,y)=xy^2e^{x^2}$がある．
+    \end{enumerate}
+    \item 
+    \begin{enumerate}[(i)]
+        \item \begin{itemize}
+            \item $C$について
+            \begin{align}
+                C:\begin{cases}
+                    x=r\cos t\\
+                    y=r\sin t
+                \end{cases}
+                ,0\le t \le 2\pi
+            \end{align}
+            というパラメタで積分する．
+            \begin{align}
+                \int_C\omega
+                &=\int_0^{2\pi} \qty(-\frac{1}{r}\sin t\cdot(-r\sin t)+\frac{1}{r}\cos t\cdot (r\cos t))\dd{t}\\
+                &=\int_0^{2\pi} \dd{t}\\
+                &=2\pi
+            \end{align}
+            \item $S$について\\
+            $S$としてどのようなものを選んでも$\displaystyle\int_S \omega$の値は等しいことは後の補題\ref{lem:1}で示すことにして，ここでは$S$として次の図に示すようなものを選ぶ．
+            \begin{figure}[H]
+                \centering
+                \begin{tikzpicture}[domain=1:1, yscale=1, xscale=1]
+                    
+                    \draw[->] (-2.4,0) -- (2.5,0) node[below right] {$x$};
+                    \draw[->] (0,-2.4) -- (0,2.5) node[above left] {$y$};
+                    
+                    \draw (0,0) node[below left] {$\mathrm{O}$};
+                    \draw (1,0) node[below right] {$r$};
+                    \draw (0,1) node[above left] {$r$};
+                    
+                    \draw[color=red] (1,1) -- (-1,1) -- (-1,-1) -- (1,-1) -- cycle node[above right] {$S$};
+
+                \end{tikzpicture}
+                \caption{正方形$S$}
+                \label{fig:Squ}
+            \end{figure}
+            $S$のパラメタ付けとして，
+            \begin{align}
+                S_1&:\begin{cases}
+                    x=-rt\\
+                    y=r
+                \end{cases}
+                ,-1\le t \le 1\\
+                S_2&:\begin{cases}
+                    x=-r\\
+                    y=-rt
+                \end{cases}
+                ,-1\le t \le 1\\
+                S_3&:\begin{cases}
+                    x=rt\\
+                    y=-r
+                \end{cases}
+                ,-1\le t \le 1\\
+                S_4&:\begin{cases}
+                    x=r\\
+                    y=rt
+                \end{cases}
+                ,-1\le t \le 1
+            \end{align}
+            を考えると
+            \begin{align}
+                \int_S\omega
+                &=\int_{S_1}\omega+\int_{S_2}\omega+\int_{S_3}\omega+\int_{S_4}\omega\\
+                &=\int_{-1}^1\frac{-r\cdot(-r)+(-r)\cdot(-r)-(-r)\cdot r+r\cdot r}{r^2(1+t^2)}\dd{t}\\
+                &=8\int_0^1\frac{1}{(1+t^2)}\dd{t}\\
+                &=8\arctan 1\\
+                &=2\pi
+            \end{align}
+            である．
+        \end{itemize}
+        \item
+        \begin{itemize}
+            \item $T$について\\
+            $T\not\ni(0,0)$であるから，$T$上の点から原点の距離の下限$m$が存在して$m>0$を満たす．
+            
+            $r\coloneqq \frac{m}{2}$としたときの$C$を$C_{\frac{m}{2}}$とおき，$C_{\frac{m}{2}}$と$T$で囲まれる領域を$D$とする．
+            
+            定義から$D\subset U$である．Greenの定理より
+            \begin{align}
+                \int_T \omega - \int_{C_{\frac{m}{2}}} \omega 
+                &=\iint_D \qty(\pdv{x}(\frac{x}{x^2+y^2})-\pdv{y}(\frac{-y}{x^2+y^2}))\dd{x}\dd{y}\\
+                &=\iint_D \qty(\frac{-x^2+y^2}{(x^2+y^2)^2}-\frac{-x^2+y^2}{(x^2+y^2)^2})\dd{x}\dd{y}\\
+                &=0\\
+                \therefore
+                \int_T \omega 
+                &= \int_{C_{\frac{m}{2}}}\omega 
+                = 2\pi
+            \end{align}
+            \item $\Gamma$について\\
+            $\Gamma$は，原点のまわりを2周する閉曲線であり，適当に分割することで区分的に$C^1$-級曲線であることがわかる．
+            また，第4象限上$\Gamma$は2点で自身と交差している．この2点を$A,B$とすると，$\Gamma=\Gamma_{AA}+\Gamma_{AB}+\Gamma_{BB}+\Gamma_{BA}$となるようにできる．ただし，$\Gamma_{XY} (X,Y=A,B)$は$X$と$Y$を端点とし$\Gamma$と同じ向きの曲線である．
+
+            $\Gamma_{AA}$が内側に原点がある方であるように$A$を定める．
+            \begin{align}
+                \int_\Gamma \omega
+                &=\int_{\Gamma_{AA}} \omega+\int_{\Gamma_{AB}} \omega+\int_{\Gamma_{BB}} \omega+\int_{\Gamma_{BA}} \omega\\
+                &=\int_{\Gamma_{AA}} \omega+\int_{\Gamma_{ABA}} \omega &\qq{($\because$ Greenの定理)}
+            \end{align}
+            である．ただし，$\Gamma_{ABA}=\Gamma_{AB}+\Gamma_{BA}$である．
+
+            $\Gamma_{AA},\Gamma_{ABA}$はともに閉曲線である．上の$T$についての議論と同様に，それぞれの曲線が囲う領域の内部に$C$がおさまるように$r$を定めることができて，それぞれの曲線とこのようにして定めた$C$で囲まれる領域で積分した$\omega$の値は$0$であるから，Greenの定理より
+            \begin{align}
+                \int_{\Gamma_{AA}} \omega &= 2\pi\\
+                \int_{\Gamma_{ABA}} \omega &= 2\pi
+            \end{align}
+            である．よって
+            \begin{align}
+                \int_\Gamma \omega
+                &=\int_{\Gamma_{AA}} \omega+\int_{\Gamma_{ABA}}\\
+                &=4\pi
+            \end{align}
+            である．
+        \end{itemize}
+        \item そのような$F$が存在したとする．つまり，$\omega$が完全形式だと仮定する．このとき
+        \begin{align}
+            \int_C \omega 
+            &= \int_C \dd{F}\\
+            &= F(r,0)-F(r,0) &\qq{($\because$微分積分学の基本定理)}\\
+            &= 0
+        \end{align}
+        であるが，これは(i)で求めた$\displaystyle\int_C \omega =2\pi$と矛盾する．
+
+        よって，そのような$F$は存在しない．\qed
+        \item まず，次の補題を示す．
+        \begin{lemma}
+            閉である微分1-形式$\eta$と区分的に$C^1$-級である$U$上の閉曲線$K$に対して，$K$が原点のまわりを$n$回周回するとき
+            \begin{align}
+                \int_K \eta = n\int_C \eta
+            \end{align}
+            である．\label{lem:1}
+        \end{lemma}
+        \begin{proof}
+            (ii)の$\Gamma$についての議論と同じようにして，
+            \begin{align}
+                \int_K \eta
+                &=\sum_{i=1}^n\int_{K_i}\eta
+            \end{align}
+            であり，かつ各$K_i$が囲う領域に原点が含まれるように$U$上の閉曲線の列$\qty{K_i}\quad (i = 1,\cdots n)$をとることができる．
+
+            それぞれの$K_i$は原点を通らないので原点との距離の下限が存在して，それは正である．よって$C$が$K$の内部におさまるように$r$をとることができる．
+            $K_i,C$に囲まれた領域$D$に対しGreenの定理より
+            \begin{align}
+                \int_{K_i} \eta -  \int_C \eta 
+                &=  \int_D \dd{\eta} = 0 & \text{($\because$ $\eta$は閉)}\\
+                \int_{K_i} \eta 
+                &= \int_C \eta
+                \intertext{よって}
+                \int_K \eta &= n\int_C \eta
+            \end{align}
+            を得る．
+        \end{proof}
+        % \newpage
+        示すものは次である：
+        \begin{proposition}
+            閉である微分1-形式$\tau$に対して，スカラー$\alpha \in \mathbb{R}$が存在して$\eta=\tau-\alpha \omega$は完全形式である．
+        \end{proposition}
+        \begin{proof}
+            \begin{align}
+                a=\int_C\tau
+            \end{align}
+            とし，
+            \begin{align}
+                \alpha = \frac{a}{2\pi}
+            \end{align}
+            と定める．このとき，区分的に$C^1$-級である$U$上の任意の閉曲線$K$に対して
+            \begin{align}
+                \int_K \eta
+                &=\qty(\int_K \tau)- \alpha\qty(\int_K \omega)\\
+                &=n\qty(a- \frac{a}{2\pi} \cdot 2\pi) &\text{($\because$補題\ref{lem:1})}\\
+                &=0 \label{eq:circ_0}
+            \end{align}
+            が成り立つ．ただし，$n$は原点のまわりを周回した回数である．
+            \begin{align}
+                U_1 &= U \setminus \qty{(x,y) \where x\le 0 \land y=0}\\
+                U_2 &= U \setminus \qty{(x,y) \where x=0 \land y\le 0}
+            \end{align}
+            とすると，$U_1, U_2$は星状領域である．なぜなら，$A(-1,0), P \in U_1$を結ぶ線分上の点は$U_1$に属するからである．$U_2$についても同様．
+
+            \begin{figure}[H]
+                \centering
+                \begin{tikzpicture}[domain=1:1, yscale=0.6, xscale=0.6]
+                    
+                    % \draw[very thin, dashed,color=gray] (-2.3,-2.3) grid (2.3,2.3);
+        
+                    \draw[->] (-2.4,0) -- (2.5,0) node[below right] {$x$};
+                    \draw[->] (0,-2.4) -- (0,2.5) node[above left] {$y$};
+                    
+                    \draw (0,0) node[below left] {$\mathrm{O}$};
+                    \draw[color=red] (-1.7,0) node[below left] {$A(-1,0)$} -- (1.2,1) node[above right] {$P$};
+                    
+                \end{tikzpicture}
+                \caption{$U_1$は星状領域である}
+            \end{figure}
+            
+            $X$と$Y$を結ぶ線分で，向きが$X$から$Y$である曲線を$\overrightarrow{XY}$と書くことにする．
+            $A(-1,0)\in U_1,B(0,-1)\in U_2, P\in U$に対して，
+            \begin{align}
+                G(P)&\coloneqq
+                \begin{dcases}
+                    G_1(P)=\int_{\overrightarrow{AP}}\eta & \text{($P\in U_1$のとき)}\\
+                    G_2(P)=\int_{\overrightarrow{AB}}\eta + \int_{\overrightarrow{BP}}\eta & \text{($P\in U \setminus U_1$のとき)}\\
+                \end{dcases}
+            \end{align}
+            と定める$G$は$C^\infty$-級であることを示す．
+            \begin{lemma}
+                $G_1$(resp. $G_2$)は$U_1$(resp. $U_2$)上で$C^\infty$-級である．\label{lem:g1u1}
+            \end{lemma}
+            \begin{proof}
+                $P(a,b)\in U_1$を任意にとる．
+                $U_1$は開集合であるから，$P$の近傍$D$が存在して$D\subset U_1$である．$\varepsilon$を$X(a + \varepsilon,b),Y(a,b + \varepsilon) \in D$となるようにとる．
+                
+                $\eta = \phi\dd{x}+\gamma\dd{y}$とおくと，$\phi(x,y)=u(x,y)-\alpha\cdot \dfrac{-y}{x^2+y^2}, \gamma(x,y)=v(x,y)-\alpha\cdot \dfrac{x}{x^2+y^2}$はともに$C^\infty$-級である．
+                \begin{align}
+                    \sigma \cdot 0 =\sigma \cdot \int_{\partial (\triangle APX)}\dd{\eta}
+                    &=\int_{\overrightarrow{AP}}\eta + \int_{\overrightarrow{PX}}\eta + \int_{\overrightarrow{XA}}\eta & \text{($\because$ 式(\ref{eq:circ_0}))}\\
+                    \intertext{ただし，$\sigma=\pm 1$は$\triangle APX$の周の向きによって定まる量である．}
+                    \int_{\overrightarrow{AX}}\eta - \int_{\overrightarrow{AP}}\eta &=\int_{\overrightarrow{PX}}\eta \\
+                    G_1(a + \varepsilon,b) - G_1(a,b) &=\int_a^{a+\varepsilon} P(t,b)\dd{t}\\
+                    \intertext{$x=a+\varepsilon$とおいて}
+                    G_1(x,b) - G_1(a,b) &=\int_a^{x} \phi(t,b)\dd{t}\\
+                    {G_1}_x(x,b) &=\phi(x,b)
+                    \intertext{$y$についても同様に，}
+                    {G_1}_y(a,y) &=\gamma(a,y)
+                \end{align}
+                が成立．$P$は任意であったから，$G_1$は$U_1$上で$C^\infty$-級である．
+                
+                同様の議論を$U_2$上$G_2$にもして，$G_2$は$U_2$上で$C^\infty$-級であることが示される．
+            \end{proof}
+            \begin{lemma}
+                $U_1 \cap U_2$上で，$G_1=G_2$である．\label{lem:u1u2}
+            \end{lemma}
+            \begin{proof}
+                $P\in U_1 \cap U_2$に対し，線分$AP$,線分$BP$上の各点はそれぞれ$U_1,U_2$に含まれる．三角形$ABP$とその周に対してGreenの定理を適用して，
+                \begin{align}
+                    \sigma \cdot 0 =\sigma \cdot \int_{\partial (\triangle ABP)}\dd{\eta}
+                    &=\int_{\overrightarrow{AB}}\eta + \int_{\overrightarrow{BP}}\eta + \int_{\overrightarrow{PA}}\eta & \text{($\because$ \eqref{eq:circ_0})}\\
+                    \intertext{ただし，$\sigma=\pm 1$は$\triangle ABP$の周の向きによって定まる量である．}
+                    \int_{\overrightarrow{AP}}\eta&=\int_{\overrightarrow{AB}}\eta + \int_{\overrightarrow{BP}}\eta \\
+                    \therefore 
+                    G_1(P)&=G_2(P)
+                \end{align}
+                
+                \begin{figure}[H]
+                    \centering
+                    \begin{minipage}{0.4\hsize}
+                        \begin{tikzpicture}[domain=1:1, yscale=0.8, xscale=0.8]
+                            
+                            \draw[->] (-2.4,0) -- (2.5,0) node[below right] {$x$};
+                            \draw[->] (0,-2.4) -- (0,2.5) node[above left] {$y$};
+                            
+                            \draw (0,0) node[below left] {$\mathrm{O}$};
+                            \draw[color=orange] (-1.7,0) node[below left] {$A(-1,0)$} -- (-0.6,1.4) node[above] {$P$} -- (0,-1.7) node[below right] {$B(0,-1)$} -- cycle;
+                            
+                        \end{tikzpicture}
+                        \caption{$\partial(\triangle ABP)\subset U$}
+                    \end{minipage}
+                    \centering
+                    \begin{minipage}{0.4\hsize}
+                        \centering
+                        \begin{tikzpicture}[domain=1:1, yscale=0.8, xscale=0.8]
+                            
+                            \draw[->] (-2.4,0) -- (2.5,0) node[below right] {$x$};
+                            \draw[->] (0,-2.4) -- (0,2.5) node[above left] {$y$};
+                            
+                            \draw (0,0) node[below left] {$\mathrm{O}$};
+                            \draw[color=cyan] (-1.7,0) node[below left] {$A(-1,0)$} -- (1.4,1.1) node[above] {$P$} -- (0,-1.7) node[below right] {$B(0,-1)$} -- cycle;
+                            
+                        \end{tikzpicture}
+                        \caption{$\partial(\triangle ABP)\subset U$}
+                    \end{minipage}
+                \end{figure}
+            \end{proof}
+
+            補題\ref{lem:u1u2}より，$U_1 \cap U_2$上で$G=G_1=G_2$である．また，
+            $G$の定義より$(U \setminus U_1)(\subset U_2) $上で$G=G_2$である．
+            よって，$U_2$上で$G=G_2$である．
+
+            補題\ref{lem:g1u1}と$G$の定義より，$U_1$上で$G=G_1$は$C^\infty$-級である．また，$U_2$上で$G=G_2$は$C^\infty$-級である．
+            
+            以上から，
+            \begin{align}
+                \alpha = \dfrac{\int_C\tau}{2\pi}, \eta=\tau-\alpha \omega
+            \end{align}
+            のとき，
+            \begin{align}
+                G(P)&\coloneqq
+                \begin{dcases}
+                    G_1(P)=\int_{\overrightarrow{AP}}\eta & \text{($P\in U_1$のとき)}\\
+                    G_2(P)=\int_{\overrightarrow{AB}}\eta + \int_{\overrightarrow{BP}}\eta & \text{($P\in U \setminus U_1$のとき)}\\
+                \end{dcases}
+            \end{align}
+            上のように定めた$G$は$C^\infty$-級である．
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

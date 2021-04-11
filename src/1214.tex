@@ -1,0 +1,194 @@
+\input{preamble.tex}
+\input{template.tex}
+
+\titleof{12/14}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}[(1)]
+    \item \begin{enumerate}[(i)]
+        \item \begin{align}
+            E &= [0, \infty) \times [0, 2\pi)\\
+            \Phi &: (r,\theta) \mapsto (x,y)=(r\cos\theta, r\sin\theta)
+        \end{align}
+        とすると，$\Phi(E)=\mathbb{R}^2$であり
+        \begin{equation}
+            \Jacobi{x,y}{r,\theta}=r
+        \end{equation}
+        は$E\setminus (\qty{0}\times [0, 2\pi))$で$\displaystyle \Jacobi{x,y}{r,\theta}\ne 0$であるから全単射である．また$m(\qty{0}\times [0, 2\pi))=0$．よって
+        \begin{equation}
+            \Phi_{\restriction E} : E \to \mathbb{R}^2
+        \end{equation}
+        はほぼ全単射である．したがって
+        \begin{align}
+            \iint_{\mathbb{R}^2}\frac{1}{(x^2+y^2+1)^s}\dd{x}\dd{y}
+            &=\iint_E \frac{1}{(r^2+1)^s}\Jacobi{x,y}{r,\theta} \dd{r}\dd{\theta}\\
+            &=\int_0^{2\pi}\dd{\theta} \int_0^\infty \frac{1}{(r^2+1)^s}r \dd{r}\\
+            &=2\pi \int_0^\infty \frac{1}{(r^2+1)^s}r \dd{r}\\
+            &=\begin{dcases}
+                \pi \eval[\log(r^2+1)|_{r\coloneqq 0}^\infty  &(s=1\text{のとき})\\
+                \frac{\pi}{-(s-1)}  \eval[ (r^2+1)^{-(s-1)} |_{r\coloneqq 0}^\infty &(s\ne 1\text{のとき})
+            \end{dcases}\\
+            &=\begin{dcases}
+                \infty \qq{(発散)} &(s=1\text{のとき})\\
+                \frac{\pi}{-(s-1)} \qty(\lim_{r\to\infty} (r^2+1)^{-(s-1)} - 1) &(s\ne 1\text{のとき})
+            \end{dcases}\\
+            &=\begin{dcases}
+                \infty \qq{(発散)} &(0 < s \le 1\text{のとき})\\
+                \frac{\pi}{(s-1)} \qq{(収束)} &(s > 1\text{のとき})
+            \end{dcases}
+        \end{align}
+        であるから，$\displaystyle \iint_{\mathbb{R}^2}\frac{1}{(x^2+y^2+1)^s}\dd{x}\dd{y}$が収束する条件は
+        \begin{equation}
+            s > 1
+        \end{equation}
+        であって，その値は
+        \begin{equation}
+            \dfrac{\pi}{(s-1)}
+        \end{equation}
+        である．
+        \item \begin{equation}
+            D_r = \qty{(x, y)\where 0\le x^2+y^2 \le r^2}
+        \end{equation}
+        とする．
+        $(x,y)\ne (0,0)$のとき
+        \begin{equation}
+            \frac{1}{(x^2+y^2)^s}>0
+        \end{equation}
+        であるから，
+        \begin{itemize}
+            \item $0<s< 1$のとき
+            \begin{align}
+                \iint_{\abs{x}\le 1, \abs{y}\le 1} \frac{1}{(x^2+y^2)^s} \dd{x}\dd{y} 
+                &< \iint_{D_{\sqrt{2}}} \frac{1}{(x^2+y^2)^s} \dd{x}\dd{y} \\
+                &= \iint_{\substack{0\le r \le \sqrt{2}\\0\le\theta<2\pi}} \frac{1}{(r^2)^s} \Jacobi{x,y}{r,\theta} \dd{r}\dd{\theta}\\
+                &= \iint_{\substack{0\le r \le \sqrt{2}\\0\le\theta<2\pi}} r^{1-2s} \dd{r}\dd{\theta}\\
+                &= \int_0^{2\pi}\dd{\theta} \int_0^{\sqrt{2}} r^{1-2s} \dd{r}\\
+                &= 2\pi \eval[\dfrac{1}{2(1-s)}r^{2(1-s)}|_{r\coloneqq 0}^{\sqrt{2}} \\
+                &= \dfrac{\pi}{1-s} \qty(2^{(1-s)})\\
+                &= \dfrac{2^{(1-s)}\pi}{1-s} \qq{(収束)} 
+            \end{align}
+            \item $s\ge 1$のとき
+            \begin{align}
+                \iint_{\abs{x}\le 1, \abs{y}\le 1} \frac{1}{(x^2+y^2)^s} \dd{x}\dd{y} 
+                &\ge \iint_{D_1} \frac{1}{(x^2+y^2)^s} \dd{x}\dd{y} \\
+                &= \iint_{\substack{0\le r \le 1\\0\le\theta<2\pi}} \frac{1}{(r^2)^s} \Jacobi{x,y}{r,\theta} \dd{r}\dd{\theta}\\
+                &= \iint_{\substack{0\le r \le 1\\0\le\theta<2\pi}} r^{1-2s} \dd{r}\dd{\theta}\\
+                &= \int_0^{2\pi}\dd{\theta} \int_0^1 r^{1-2s} \dd{r}\\
+                &= \begin{dcases}
+                    2\pi \eval[\log r|_{r\coloneqq +0}^1 &(s=1\text{のとき})\\
+                    2\pi \eval[\dfrac{1}{2(1-s)}r^{2(1-s)}|_{r\coloneqq +0}^1 &(s> 1\text{のとき})\\
+                \end{dcases}\\
+                &= \infty \qq{(発散)}
+            \end{align}
+        \end{itemize}
+        であるので，$\displaystyle \iint_{\abs{x}\le 1, \abs{y}\le 1} \frac{1}{(x^2+y^2)^s} \dd{x}\dd{y}$が収束する条件は
+        \begin{equation}
+            (0<)s< 1
+        \end{equation}
+        である．
+    \end{enumerate}
+    \item $F(t)$の増減を調べる．
+    \begin{align}
+        \pdv{t} F(t)
+        &=\int_1^2 \pdv{t}(\frac{\sin tx}{x})\dd{x}\\
+        &=\int_1^2 \frac{1}{x} x\cos tx \dd{x}\\
+        &=\int_1^2 \cos tx \dd{x}\\
+        &=\begin{dcases}
+            \int_1^2 1 \dd{x} &(t=0\text{のとき})\\
+            \frac{1}{t}\eval[\sin tx|_{x\coloneqq 1}^2&(t\ne 0\text{のとき})
+        \end{dcases}\\
+        &=\begin{dcases}
+            1 &(t=0\text{のとき})\\
+            \frac{1}{t}(\sin 2t-\sin t)&(t\ne 0\text{のとき})
+        \end{dcases}\\
+        &=\begin{dcases}
+            1 &(t=0\text{のとき})\\
+            \frac{1}{t}\sin t(2\cos t- 1)&(t\ne 0\text{のとき})
+        \end{dcases}
+    \end{align}
+    であるので，$F(t)$の増減は次の表のようになる．
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline
+            $t$ & 
+            $(-\pi)$ &
+            &
+            $-\frac{\pi}{3}$ &
+            &
+            $\frac{\pi}{3}$ &
+            &
+            $(\pi)$
+			\\
+            \hhline{|=|=|=|=|=|=|=|=|}
+			$\pdv{t} F(t)$ & & $-$ & $0$ & $+$ & $0$ & $-$ & \\ \hline
+			$F(t)$ & & $\searrow $ & (極小) & $\nearrow $ & (極大) & $\searrow $ & \\ \hline
+        \end{tabular}
+        \caption{$F(t)$の増減表}
+    \end{table}
+    したがって
+    \begin{equation}
+        \begin{dcases}
+            \text{極大を与える$t$の値}:t=\frac{\pi}{3}\\
+            \text{極小を与える$t$の値}:t=-\frac{\pi}{3}
+        \end{dcases}
+    \end{equation}
+    である．
+    \item \begin{enumerate}[(a)]
+        \item $\vb*x = \mqty(x\\y)$とし，$(\cdot, \cdot)$を$\mathbb{R}^2$の標準内積とする．このとき
+        \begin{equation}
+            f(\vb*x)\coloneqq ax^2+2bxy+cy^2=(\vb*x, A\vb*x)
+        \end{equation}
+        と書け，直交行列$P$が存在して
+        \begin{align}
+            \mqty(x\\y)&=P\mqty(y_1\\y_2)\\
+            f(\vb*x)&=\lambda_1y_1^2+ \lambda_2y_2^2
+        \end{align}
+        を満たす．ただし，$\lambda_1, \lambda_2$は$A$の固有値である．このような$P$を1つとる．
+        
+        $P$を表現行列とする線形写像$g_P:\mathbb{R}^2\to \mathbb{R}^2$は全単射で， $\displaystyle \abs{\Jacobi{x,y}{y_1,y_2}}=\abs{P}\eqqcolon c \quad(\ne 0)$である．
+
+        これらを用いて$I$を書き直すと
+        \begin{align}
+            I
+            &=\iint_{\mathbb{R}^2} e^{f(\vb*x)}\dd{x}\dd{y}\\
+            &=\iint_{\mathbb{R}^2} e^{\lambda_1y_1^2+ \lambda_2y_2^2}\abs{\Jacobi{x,y}{y_1,y_2}}\dd{y_1}\dd{y_2}\\
+            &=c\int_{-\infty}^\infty e^{\lambda_1y_1^2}\dd{y_1} \int_{-\infty}^\infty e^{\lambda_2y_2^2} \dd{y_2}
+        \end{align}
+        ここで，次の広義積分の収束・発散は
+        \begin{align}
+            J
+            &=\int_{-\infty}^\infty e^{\lambda x^2}\dd{x}\\
+            &=\begin{dcases}
+                \sqrt{\frac{\pi}{\lambda}} \qq{(収束)} &(\lambda<0\text{のとき})\\
+                \infty \qq{(発散)} &(\lambda\ge 0\text{のとき})
+            \end{dcases}
+        \end{align}
+        であったから，$I$が収束する条件は
+        \begin{equation}
+            \lambda_1 < 0 \land \lambda_2 < 0
+        \end{equation}
+        である．
+
+        これを$a,b,c$で表すことを考える．
+        $A$の固有方程式は
+        \begin{align}
+            \varphi_A(t)
+            &=\mqty|a-t&b\\b&c-t|\\
+            &=(a-t)(c-t)-b^2\\
+            &=t^2-(a+c)t + ac-b^2
+        \end{align}
+        であって，$\lambda_1, \lambda_2$はこの根である．よって，
+        \begin{align}
+            &\lambda_1 < 0 \land \lambda_2 < 0\\
+            \Longleftrightarrow\quad & \lambda_1 + \lambda_2 < 0 \land \lambda_1\lambda_2 > 0\\
+            \Longleftrightarrow\quad & a + c < 0 \land ac-b^2 > 0
+        \end{align}
+        が$I$が収束するための必要十分条件である．
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

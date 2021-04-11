@@ -1,0 +1,339 @@
+\input{preamble.tex}
+\input{template.tex}
+\titleof{10/05}
+
+\begin{document}
+    
+\maketitle
+
+\begin{enumerate}[(1)]
+    \item 
+    \begin{equation}
+        f(x):=\frac{1}{1+x}=\sum_{n=0}^{\infty} (-1)^nx^n
+    \end{equation}
+    の収束半径は$1$であるから，$\abs{x}<1$のもとで
+    \begin{align}
+        \int_0^x f(t)\dd{t}
+        &=\sum_{n=0}^{\infty} (-1)^n\frac{x^{n+1}}{n+1}\\
+        \log(1+x)
+        &=\sum_{n=1}^{\infty} (-1)^{n-1}\frac{x^{n}}{n}\label{eq:log_1plusx}
+    \end{align}
+    である．また，
+    \begin{align}
+        \dv{x}(f(x))
+        &=\sum_{n=1}^{\infty} (-1)^{n-1}nx^{n-1}\\
+        &=\sum_{n=0}^{\infty} (-1)^{n}(n+1)x^{n}
+    \end{align}
+    である．\eqref{eq:log_1plusx}式より
+    \begin{align}
+        \int_0^x \log(1+t)\dd{t}
+        &=\sum_{n=1}^{\infty} (-1)^{n-1}\frac{x^{n+1}}{n(n+1)}\\
+        (1+x)\log(1+x)-x
+        &=\sum_{n=2}^{\infty} (-1)^{n-2}\frac{x^{n}}{n(n-1)}\\
+        (1+x)\log(1+x)
+        &=x+\sum_{n=2}^{\infty} (-1)^{n}\frac{x^{n}}{n(n-1)}
+    \end{align}
+    である．
+    
+    \item 
+    求める$r$の範囲は$0<r<1$であることを示す．
+    \begin{proof}
+        \begin{itemize}
+            \item $0<r<1$のとき\\
+            ある数列$\{a_n\}$が
+            \begin{equation}
+                \abs{a_{n+1}-a_n}<r^n \quad (n =0,1,2,\dots)
+            \end{equation}
+            を満たしているとする．\\
+            $\varepsilon>0$をとる．自然数$l,m$が$l>m>R:=\dfrac{\log((1-r)\min\{\varepsilon,1\})}{\log r}$を満たしているとき，
+            \begin{align}
+                \abs{a_l-a_m}
+                &\le\sum_{n=m}^{l-1}\abs{a_{n+1}-a_n}&(\because\text{三角不等式})\\
+                &<\sum_{n=m}^{l-1}r^n\\
+                &=r^m\frac{1-r^{l-m}}{1-r}\\
+                &<r^m\frac{1}{1-r}&(\because l-m>0)\\
+                &<(1-r)\min\{\varepsilon,1\}\frac{1}{1-r}&(\because m>R)\\
+                &=\min\{\varepsilon,1\}\\
+                \therefore \abs{a_l-a_m}
+                &<\varepsilon
+            \end{align}
+            である．
+            したがって，
+            たとえば$M:=\floor{R}$とすれば
+            任意の自然数$l>m(>M)$に対して
+            \begin{equation}
+                \abs{a_l-a_m}<\varepsilon
+            \end{equation}
+            であるから，数列$\{a_n\}$は収束する．
+            \item $r\ge 1$のとき\\
+            \begin{equation}
+                \abs{a_{n+1}-a_n}<1\le r^n \ \ (n =0,1,2,\dots)
+            \end{equation}
+            を満たす数列$\{a_n\}$として，
+            \begin{equation}
+                \{a_n\}=\frac{1}{2}n
+            \end{equation}
+            があるが，これは収束しない．
+        \end{itemize}
+        以上から，求める$r$の範囲は$0<r<1$である．
+    \end{proof}
+        \item 
+        \begin{align}
+            f(x)&=\sum_{n=0}^\infty a_nx^n&(\abs{x}<r),\\
+            g(x)&=\sum_{n=1}^\infty na_nx^{n-1}&(\abs{x}<r^\prime)
+        \end{align}
+        とする．
+        \begin{enumerate}[(i)]
+            \item 
+            \begin{itemize}
+                \item $\abs{x}<r$のとき，
+                \begin{align}
+                    \dv{x}(f(x))=\sum_{n=1}^\infty na_nx^{n-1}=g(x)
+                \end{align}
+                であるから，$g(x)$は収束し$r\le r^\prime$である．
+                \item $\abs{x}<r^\prime$のとき，
+                \begin{align}
+                    \int_{0}^xg(t)\dd{t}=\sum_{n=1}^\infty a_nx^{n}=f(x)-a_0
+                \end{align}
+                であるから，$f(x)$は収束し$r\ge r^\prime$である．
+                以上から，$r=r^\prime$である．\qed
+            \end{itemize}
+        \item 
+        \begin{align}
+            \lim_{n\to\infty}b_n&=\beta>0\\
+            \limsup_{n\to\infty}c_n&=\gamma>0
+        \end{align}
+        が満たされているとする．また
+        \begin{equation}
+            S_m:=\{c_m, c_{m+1},c_{m+2},\dots\}
+        \end{equation}
+        とする．
+
+        $\varepsilon>0$をとる．
+        \begin{equation}
+            \lim_{n\to\infty}b_n=\beta
+        \end{equation}
+        が成り立っているので，ある$N_1\in\mathbb{N}$が存在して，$\varepsilon_1=\min\{\beta,\dfrac{\varepsilon}{\gamma}\}$に対して
+        \begin{align}
+            n>N_1&\to \abs{b_n - \beta}<\varepsilon_1\\
+            n>N_1&\to 0<\beta - \varepsilon_1 <b_n <\beta + \varepsilon_1\label{eq:3_2_b}
+        \end{align}
+        が成り立つ．
+
+        \begin{equation}
+            \limsup_{n\to\infty}c_n=\gamma
+        \end{equation}
+        が成り立っているので，
+        \begin{equation}
+            \lim_{n\to\infty}S_n=\gamma
+        \end{equation}
+        であり，ある$N_2\in\mathbb{N}$が存在して，$\varepsilon_2=\dfrac{\varepsilon-\gamma\varepsilon_1}{\beta+\varepsilon_1}>0$に対して
+        \begin{align}
+            \forall m>N_2&\to S_m<\gamma+\varepsilon_2\\
+            \forall n>N_2&\to c_n<\gamma+\varepsilon_2\label{eq:3_2_c}
+        \end{align}
+        が成り立つ．さらに，$\varepsilon_3=\dfrac{\varepsilon-\gamma\varepsilon_1}{\beta-\varepsilon_1}>0$に対して
+        \begin{equation}
+            c_n>\gamma-\varepsilon_3\label{eq:3_2_c_3}
+        \end{equation}
+        となる$n$の個数は無限である．
+
+        $n>N=\max\{N_1,N_2\}$とすると，$b_n>0$であり，式\eqref{eq:3_2_b}，\eqref{eq:3_2_c}により
+        \begin{align}
+            b_nc_n 
+            &< (\beta + \varepsilon_1)(\gamma+\varepsilon_2)\\
+            &= \beta\gamma + \varepsilon_2(\beta+\varepsilon_1)+\gamma\varepsilon_1\\
+            &= \beta\gamma + \varepsilon-\gamma\varepsilon_1+\gamma\varepsilon_1\\
+            &= \beta\gamma + \varepsilon\\
+            \therefore b_nc_n
+            &< \beta\gamma + \varepsilon
+        \end{align}
+        である．よって，$b_nc_n \ge\beta\gamma + \varepsilon$となる$n$の個数は高々$N+1$個であり，有限である．
+
+        また，式\eqref{eq:3_2_c_3}を満たすような$n$であって$n>N_1$も満たすものの個数も無限であり，このような$n$に対し，式\eqref{eq:3_2_b}より
+        \begin{align}
+            b_nc_n 
+            &> (\beta-\varepsilon_1)(\gamma-\varepsilon_3)\\
+            &=\beta\gamma - \varepsilon_3(\beta-\varepsilon_1)-\gamma\varepsilon_1\\
+            &=\beta\gamma - (\varepsilon-\gamma\varepsilon_1)-\gamma\varepsilon_1\\
+            &=\beta\gamma - \varepsilon\\
+            \therefore b_nc_n 
+            &> \beta\gamma - \varepsilon
+        \end{align}
+        が成り立つ．
+
+        以上から，
+        \begin{align}
+            \limsup_{n\to\infty}b_nc_n=\beta\gamma
+        \end{align}
+        である．\qed
+        \item 
+        \begin{equation}
+            h(x)\coloneqq\sum_{n=1}^\infty na_nx^{n}
+        \end{equation}
+        としたとき，
+        \begin{equation}
+            g(x)=\frac{1}{x}h(x) \quad (0<\abs{x}<r^\prime)
+        \end{equation}
+        である．$h(x)$の収束半径を$r^{\prime\prime}$とする．また，
+        \begin{equation}
+            \limsup_{n\to\infty}\sqrt[n]{\abs{a_n}}=\gamma
+        \end{equation}
+        とおく．
+        Cauchy-Hadamardの公式により，
+        \begin{equation}
+            r=\frac{1}{\gamma}
+        \end{equation}
+        である．
+        \begin{equation}
+            \limsup_{n\to\infty}\sqrt[n]{\abs{na_n}}=\gamma
+        \end{equation}
+        であることを示す．
+        
+        \begin{proof}
+            \begin{itemize}
+                \item $\gamma=0$のとき\\
+                次の補題を示す．
+                \begin{lemma}\label{lem:limsup_lim}
+                    数列$\qty{a_n}$が
+                    \begin{align}
+                        \limsup_{n\to\infty}a_n&=\alpha\ (\in\mathbb{R})\\
+                        a_n&\ge \alpha\ (\forall n\in\mathbb{N})
+                    \end{align}
+                    を満たしているとき，
+                    \begin{equation}
+                        \lim_{n\to\infty}a_n=\alpha
+                    \end{equation}
+                    である．
+                \end{lemma}
+                \begin{proof}
+                    \begin{equation}
+                        \limsup_{n\to\infty}a_n=\alpha
+                    \end{equation}
+                    であるとする．
+                    \begin{equation}
+                        S_m:=\sup\qty{a_m,a_{m+1},\dots}
+                    \end{equation}
+                    を考えると，
+                    \begin{equation}
+                        \lim_{m\to\infty}S_m=\alpha
+                    \end{equation}
+                    であるから
+                    $\varepsilon>0$に対し，$M\in\mathbb{N}$が存在して，
+                    \begin{align}
+                        \forall m>M &\to S_m<\alpha+\varepsilon\\
+                        \therefore
+                        \forall n>M &\to a_n<\alpha+\varepsilon \label{eq:3_3_right}
+                    \end{align}
+                    が成り立つ．また，
+                    \begin{equation}
+                        a_n\ge \alpha\ (\forall n\in\mathbb{N})
+                    \end{equation}
+                    であるとすると
+                    \begin{equation}
+                        \forall n\in\mathbb{N}\to a_n > \alpha- \varepsilon\label{eq:3_3_left}
+                    \end{equation}
+                    が成り立つ．
+                    \eqref{eq:3_3_right},\eqref{eq:3_3_left}式から
+                    \begin{align}
+                        \forall n>M &\to \alpha- \varepsilon<a_n<\alpha+\varepsilon\\
+                        \therefore
+                        \lim_{n\to\infty}a_n=\alpha
+                    \end{align}
+                    である．
+                \end{proof}
+                
+                
+                
+                数列$\sqrt[n]{n}>0$が正の値に収束することを示す．
+                \begin{proof}
+                    \begin{align}
+                        \lim_{n\to\infty}\log{\sqrt[n]{n}}
+                        &=\lim_{n\to\infty}\frac{1}{n}\log n\\
+                        &= 0
+                    \end{align}
+                    であり，指数関数は連続なので
+                    \begin{equation}
+                        \lim_{n\to\infty}\sqrt[n]{n}=1
+                    \end{equation}
+                    である．
+                \end{proof}
+                さて，
+                \begin{equation}
+                    \sqrt[n]{\abs{a_n}}\ge 0
+                \end{equation}
+                であることから，補題\ref{lem:limsup_lim}を$a_n:=\sqrt[n]{\abs{a_n}},\alpha:=0$として適用すると
+                \begin{equation}
+                    \lim_{n\to\infty}\sqrt[n]{\abs{a_n}} = 0
+                \end{equation}
+                であるから
+                \begin{align}
+                    \lim_{n\to\infty}\sqrt[n]{\abs{na_n}}
+                    &=
+                    \qty(\lim_{n\to\infty}\sqrt[n]{n})
+                    \qty(\lim_{n\to\infty}\sqrt[n]{\abs{a_n}})\\
+                    &=1\cdot 0 = 0\\
+                    \therefore
+                    \limsup_{n\to\infty}\sqrt[n]{\abs{na_n}}
+                    &=0=\gamma
+                \end{align}
+                である．
+                
+                \item $\gamma>0$のとき\\
+                (ii)で$b_n:=\sqrt[n]{n},\, c_n:=\sqrt[n]{\abs{a_n}}$とすることができ，
+                \begin{align}
+                    \limsup_{n\to\infty}\sqrt[n]{\abs{na_n}}
+                    &=\limsup_{n\to\infty}\sqrt[n]{n}\sqrt[n]{\abs{a_n}}\\
+                    &=\qty(\lim_{n\to\infty}\sqrt[n]{n}) \qty(\limsup_{n\to\infty}\sqrt[n]{\abs{a_n}})\\
+                    &=\gamma
+                \end{align}
+                を得る．
+            \end{itemize}
+        \end{proof}
+        Cauchy-Hadamardの公式により
+        \begin{equation}
+            r^{\prime\prime}=\frac{1}{\gamma}\label{eq:last_1}
+        \end{equation}
+        であるから
+        \begin{equation}
+            r=r^{\prime\prime}
+        \end{equation}
+        である．
+        
+        $r^\prime=r^{\prime\prime}$を示す．
+        \begin{proof}
+            \begin{itemize}
+                \item $x=0$のとき
+                \begin{align}
+                    g(0)&=a_1\\
+                    h(0)&=0
+                \end{align}
+                である．
+                \item $0<\abs{x}<r^\prime$のとき
+                \begin{equation}
+                    g(x)=\delta\in\mathbb{R}
+                \end{equation}
+                であるから，
+                \begin{equation}
+                    h(x)=x\delta\in\mathbb{R}
+                \end{equation}
+                である．
+                \item $\abs{x}>r^\prime$のとき\\
+                べき級数$\displaystyle\sum_{n=1}^\infty na_nx^{n-1}$は収束しないので，その実数倍である$\displaystyle\sum_{n=1}^\infty na_nx^{n}$も収束しない．
+
+                以上から
+                \begin{equation}
+                    r^\prime=r^{\prime\prime}\label{eq:last_2}
+                \end{equation}
+                である．
+            \end{itemize}
+        \end{proof}
+        式\eqref{eq:last_1}\eqref{eq:last_2}から
+        \begin{equation}
+            r=r^{\prime}
+        \end{equation}
+        である．\qed
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

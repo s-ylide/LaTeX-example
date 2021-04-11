@@ -1,0 +1,104 @@
+%& -shell-escape -enable-write18 
+\documentclass[uplatex,dvipdfmx]{jsarticle}
+\usepackage[utf8]{inputenc}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage[driver=dvipdfm,hmargin=19.05truemm,vmargin=25.40truemm]{geometry}
+\usepackage{colortbl}
+\usepackage{tcolorbox}
+\usepackage{varwidth}
+\usepackage{xcolor}
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{bm}
+\usepackage[italicdiff]{physics}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=true}
+\usepackage[unicode, dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\hypersetup{
+setpagesize=false,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    colorlinks=true,
+    linkcolor=cyan,
+    citecolor=red,
+}
+\usepackage{mathrsfs}
+\usepackage{bussproofs}
+\usepackage{enumerate}
+\usepackage{pxrubrica}
+\usepackage{tipa}
+\usepackage{ascmac}
+\usepackage{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage{listings,jvlisting}
+\usepackage{tikz}
+\usetikzlibrary{math,patterns,intersections,calc,arrows,graphs}
+\usepackage{float}
+\usepackage{xparse}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{siunitx}
+\usepackage{hhline}
+\usepackage{bxbase}
+\usepackage[mark=***]{sectionbreak}
+\usepackage[geometry]{ifsym}
+\usepackage[prefernoncjk]{pxcjkcat}
+\usepackage[LGR,T2A,T3,T1]{fontenc}
+\usepackage[greek,latin,english,russian,japanese]{pxbabel}
+
+\allowdisplaybreaks
+
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Thm}
+\newtheorem{corollary}{Col}
+\newtheorem{lemma}{Lem}
+\newtheorem{definition}{Def}
+\newtheorem{proposition}{Prop}
+
+\tcbuselibrary{most}
+
+\renewcommand{\labelitemi}{$\circ$}
+\renewcommand{\labelitemii}{$\triangleright$}
+
+\ProvideDocumentCommand\floor{m}{\lfloor {#1} \rfloor}
+\ProvideDocumentCommand{\where}{}{\mathrel{}\middle|\mathrel{}}
+\ProvideDocumentCommand{\when}{m}{\quad({#1})}
+\ProvideDocumentCommand{\adjoint}{}{\mathbf{\ast}}
+\ProvideDocumentCommand{\conjugation}{}{\mathbf{\ast}}
+\NewDocumentCommand{\Jacobi}{m m}{\frac{\partial ({#1})}{\partial ({#2})}}
+\NewDocumentCommand{\JacobiPolar}{O{x,y}}{\frac{\partial ({#1})}{\partial (r,\theta)}}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\res}{Res}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Ran}{Ran}
+
+\DeclareMathOperator{\exd}{d}
+
+\DeclareFontShape{JY2}{mc}{m}{it}{<->ssub*mc/m/n}{}
+\DeclareFontShape{JY2}{mc}{m}{sl}{<->ssub*mc/m/n}{}
+\DeclareFontShape{JY2}{mc}{m}{sc}{<->ssub*mc/m/n}{}
+\DeclareFontShape{JY2}{gt}{m}{it}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JY2}{gt}{m}{sl}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JY2}{mc}{b}{it}{<->ssub*mc/bx/it}{}
+\DeclareFontShape{JY2}{mc}{bx}{it}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JY2}{mc}{bx}{sl}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{mc}{m}{it}{<->ssub*mc/m/n}{}
+\DeclareFontShape{JT2}{mc}{m}{sl}{<->ssub*mc/m/n}{}
+\DeclareFontShape{JT2}{mc}{m}{sc}{<->ssub*mc/m/n}{}
+\DeclareFontShape{JT2}{gt}{m}{it}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{gt}{m}{sl}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{mc}{b}{it}{<->ssub*gt/b/n}{}
+\DeclareFontShape{JT2}{mc}{bx}{it}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{mc}{bx}{sl}{<->ssub*gt/m/n}{}
+
+\DeclareFontShape{J30}{mc}{b}{it}{<->ssub*mc/bx/it}{}
+\DeclareFontShape{J30}{mc}{b}{n}{<->ssub*mc/bx/n}{}
+\DeclareFontShape{J20}{mc}{b}{it}{<->ssub*mc/bx/it}{}
+\DeclareFontShape{J20}{mc}{b}{n}{<->ssub*mc/bx/n}{}

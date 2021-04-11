@@ -1,0 +1,317 @@
+\input{preamble.tex}
+\input{template.tex}
+\titleof{10/26}
+
+\begin{document}
+    
+\maketitle
+
+\begin{enumerate}[(1)]
+    \item Cが線分ABの重心であればよい．
+    \begin{align}
+        \overline{AC}
+        &=\frac{\int_0^1xe^x\dd{x}}{\int_0^1e^x\dd{x}}\\
+        &=\frac{\eval[(x-1)e^x|_{0}^{1}}{\eval[e^x|_{0}^{1}}\\
+        \therefore
+        \overline{AC}
+        &=\frac{1}{e-1}
+    \end{align}
+    \item 両辺を$s$で偏微分して，
+    \begin{align}
+        \pdv{s}\int_s^{st}f(x)\dd{x}&=\pdv{s}\int_1^{t}f(x)\dd{x}\\
+        tf(st)-f(s)&=0
+    \end{align}
+    $t=\dfrac{1}{s}$を代入して
+    \begin{align}
+        \frac{1}{s}f(1)-f(s)&=0\\
+        f(s)&=\frac{1}{s}f(1)
+    \end{align}
+    これが任意の$s>0$について成り立つから，
+    \begin{equation}
+        f(x)=\frac{a}{x} \quad (\exists a\in\mathbb{R})
+    \end{equation}
+    である必要がある．逆に，$f(x)=\dfrac{a}{x}$のとき
+    \begin{align}
+        \int_s^{st}f(x)\dd{x}
+        &=a(\log(st)-\log s)\\
+        &=a\log t\\
+        &=\int_1^{t}f(x)\dd{x}\\
+    \end{align}
+    であるから，求める$f$は
+    \begin{equation}
+        f(x)=\frac{a}{x} \quad (\exists a\in\mathbb{R})
+    \end{equation}
+    である．
+    \item 
+    \begin{enumerate}[(i)]
+        \item 概形は以下の5つの場合に大別できる．一様連続性の観点から(b),(c),(d)は同じ場合である．
+        \begin{figure}[H]
+            \begin{minipage}[t]{.33\textwidth}
+                \centering
+                \begin{tikzpicture}[domain=0:3]
+                    \draw[very thin,color=gray] (-0.1,-0.1) grid (2.9,2.9);
+                    \draw[->] (-0.3,0) -- (3.3,0) node[right] {$x$};
+                    \draw[->] (0,-0.3) -- (0,3.3) node[above] {$y$};
+                    
+                    \draw (0,0) node[below left] {$\mathrm{O}$};
+                    \draw (1,0) node[below] {$1$};
+                    \draw (0,1) node[left] {$1$};
+
+                    \draw[domain=0:1.8,color=red] plot function{x*x} node[above right] {$y=f_s(x)$};
+                    \filldraw[draw=red, thick, fill=white] (0,0) circle (2pt);
+                \end{tikzpicture}
+                \caption{(a)：$s>1$のとき}
+                \label{graph:a}
+            \end{minipage}
+            \begin{minipage}[t]{.33\textwidth}
+                \centering
+                \begin{tikzpicture}[domain=0:3]
+                    \draw[very thin,color=gray] (-0.1,-0.1) grid (2.9,2.9);
+                    \draw[->] (-0.3,0) -- (3.3,0) node[right] {$x$};
+                    \draw[->] (0,-0.3) -- (0,3.3) node[above] {$y$};
+                    
+                    \draw (0,0) node[below left] {$\mathrm{O}$};
+                    \draw (1,0) node[below] {$1$};
+                    \draw (0,1) node[left] {$1$};
+
+                    \draw[domain=0:3,color=orange] plot function{x} node[above right] {$y=f_s(x)$};
+                    \filldraw[draw=orange, thick, fill=white] (0,0) circle (2pt);
+                \end{tikzpicture}
+                \caption{(b)：$s=1$のとき}
+                \label{graph:b}
+            \end{minipage}
+            \begin{minipage}[t]{.33\textwidth}
+                \centering
+                \begin{tikzpicture}[domain=0:3]
+                    \draw[very thin,color=gray] (-0.1,-0.1) grid (2.9,2.9);
+                    \draw[->] (-0.3,0) -- (3.3,0) node[right] {$x$};
+                    \draw[->] (0,-0.3) -- (0,3.3) node[above] {$y$};
+                    
+                    \draw (0,0) node[below left] {$\mathrm{O}$};
+                    \draw (1,0) node[below] {$1$};
+                    \draw (0,1) node[left] {$1$};
+
+                    \draw[domain=0:3,color=green] plot function{sqrt(x)} node[above right] {$y=f_s(x)$};
+                    \filldraw[draw=green, thick, fill=white] (0,0) circle (2pt);
+                \end{tikzpicture}
+                \caption{(c)：$0<s<1$のとき}
+                \label{graph:c}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[H]
+            \begin{minipage}[t]{.45\textwidth}
+                \centering
+                \begin{tikzpicture}[domain=0:3]
+                    \draw[very thin,color=gray] (-0.1,-0.1) grid (2.9,2.9);
+                    \draw[->] (-0.3,0) -- (3.3,0) node[right] {$x$};
+                    \draw[->] (0,-0.3) -- (0,3.3) node[above] {$y$};
+                    
+                    \draw (0,0) node[below left] {$\mathrm{O}$};
+                    \draw (0,1) node[left] {$1$};
+
+                    \draw[domain=0:3,color=cyan] plot function{1} node[above right] {$y=f_s(x)$};
+                    \filldraw[draw=cyan, thick, fill=white] (0,1) circle (2pt);
+                \end{tikzpicture}
+                \caption{(d)：$s=0$のとき}
+                \label{graph:d}
+            \end{minipage}
+            \begin{minipage}[t]{.45\textwidth}
+                \centering
+                \begin{tikzpicture}[domain=0:3]
+                    \draw[very thin,color=gray] (-0.1,-0.1) grid (2.9,2.9);
+                    \draw[->] (-0.3,0) -- (3.3,0) node[right] {$x$};
+                    \draw[->] (0,-0.3) -- (0,3.3) node[above] {$y$};
+                    
+                    \draw (0,0) node[below left] {$\mathrm{O}$};
+                    \draw (1,0) node[below] {$1$};
+                    \draw (0,1) node[left] {$1$};
+
+                    \draw[domain=0.3:3,color=blue] plot function{1/x} node[above right] {$y=f_s(x)$};
+                \end{tikzpicture}
+                \caption{(e)：$s<0$のとき}
+                \label{graph:e}
+            \end{minipage}
+        \end{figure}
+        \item $0\le s \le 1$である．
+        \begin{enumerate}[(a)]
+            \item $s>1$のとき$f_s(x)$が一様連続でないことの証明
+            \begin{lemma}
+                $s>1,x>0$ならば$(1+x)^s>1+sx$である．\label{lem:1xge1psx}
+            \end{lemma}
+            \begin{proof}
+                $s>1$とする．
+                $g(x)=(1+x)^s-(1+sx)$とおくと，
+                \begin{equation}
+                    \dv{g(x)}{x} =s\qty{(1+x)^{s-1}-1}>0\ (x>0)
+                \end{equation}
+                であり$g(0)=0$だから
+                \begin{equation}
+                    x>0 \qq{ならば}g(x)>0
+                \end{equation}
+                すなわち
+                \begin{equation}
+                    x>0 \qq{ならば}(1+x)^s>1+sx
+                \end{equation}
+                である．
+            \end{proof}
+            \begin{proposition}
+                $s>1$のとき$f_s(x)=x^s$は一様連続でない．
+            \end{proposition}
+            \begin{proof}
+                $\delta>0$を任意にとる．
+                \begin{equation}
+                    \begin{dcases}
+                        x&=y+\frac{\delta}{s}\ (>0)\\
+                        y&=\qty(\frac{1}{\delta})^{\frac{1}{s-1}}\ (>0)
+                    \end{dcases}
+                \end{equation}
+                とすることができる．Lem.\ref{lem:1xge1psx}の両辺を$y^s$倍し$x=\dfrac{\delta}{sy}$を代入して
+                \begin{equation}
+                    (y+\frac{\delta}{s})^s>y^s+s\cdot\frac{\delta}{sy}\cdot y^s
+                \end{equation}
+                を得る．
+                \begin{align}
+                    \abs{x^s-y^s}
+                    &=\qty(y+\frac{\delta}{s})^s-y^s\\
+                    &>s\cdot\frac{\delta}{sy}\cdot y^s\\
+                    &=\delta y^{s-1}\\
+                    &=1\\
+                    \therefore
+                    \abs{f_s(x)-f_s(y)}
+                    &>1
+                \end{align}
+                となるから，$f_s(x)$は一様連続でない．
+            \end{proof}
+            \item $s=1$のとき$f_1(x)=x$は一様連続であることの証明
+            \begin{proposition}
+                $s=1$のとき$f_1(x)=x$は一様連続である．
+            \end{proposition}
+            \begin{proof}
+                任意の$\varepsilon>0$に対し，$\delta=\varepsilon$とすることで，任意の$x,y$に対し
+                \begin{equation}
+                    0<\abs{x-y}<\delta \to \abs{f(x)-f(y)} = \abs{x-y} < \varepsilon
+                \end{equation}
+                が成り立つ．よって$f_1(x)=x$は一様連続である．
+            \end{proof}
+            \item $0<s<1$のとき$f_s(x)=x^s$は一様連続であることの証明
+            \begin{lemma}
+                $0<s<1,x>0$ならば$1+x^s>(1+x)^s$である．\label{lem:unpack_1}
+            \end{lemma}
+            \begin{proof}
+                $0<s<1$とする．
+                $h(x)=1+x^s-(1+x)^s$とおくと，
+                \begin{equation}
+                    \dv{h(x)}{x} =s\qty{x^{s-1}-(1+x)^{s-1}}>0\ (x>0)\ \because \qq{$f_{s-1}(x)$は単調減少関数}
+                \end{equation}
+                であり$h(0)=0$だから
+                \begin{equation}
+                    x>0 \qq{ならば}h(x)>0
+                \end{equation}
+                すなわち
+                \begin{equation}
+                    x>0 \qq{ならば}1+x^s>(1+x)^s
+                \end{equation}
+                である．
+            \end{proof}
+            \begin{proposition}
+                $0<s<1$のとき$f_s(x)=x^s$は一様連続である．
+            \end{proposition}
+            \begin{proof}
+                $\delta=\varepsilon^{\frac{1}{s}}$であるとする．
+                任意の$x,y$に対し，
+                \begin{equation}
+                    \abs{x-y}<\delta
+                \end{equation}
+                であるとする．$x\ge y$のとき
+                \begin{equation}
+                    x<y+\delta
+                \end{equation}
+                $f_s(x)$は単調増加関数なので
+                \begin{equation}
+                    x^s<(y+\delta)^s
+                \end{equation}
+                であり，Lem.\ref{lem:unpack_1}の両辺を$y^s$倍して$x=\dfrac{\delta}{y}$を代入することで
+                \begin{align}
+                    x^s<(y+\delta)^s&<y^s+\delta^s\\
+                    x^s-y^s&<\delta^s
+                \end{align}
+                また，$y<x$のときも同様に
+                \begin{align}
+                    y&<x+\delta\\
+                    \therefore 
+                    y^s<(x+\delta)^s&< x^s+\delta^s\\
+                    y^s-x^s&< \delta^s
+                \end{align}
+                よって
+                \begin{align}
+                    \abs{f_s(x)-f_s(y)}&=\abs{x^s-y^s}<\delta^s=\varepsilon\\
+                    \therefore 
+                    \abs{f_s(x)-f_s(y)}&<\varepsilon
+                \end{align}
+                が成り立つ．よって$f_s(x)=x^s$は一様連続である．
+            \end{proof}
+            \item $s=0$のとき$f_0(x)=1$は一様連続であることの証明
+            \begin{proposition}
+                $s=0$のとき$f_0(x)=1$は一様連続である．
+            \end{proposition}
+            \begin{proof}
+                任意の$x,y$に対し
+                \begin{align}
+                    \abs{f(x)-f(y)}=0
+                \end{align}
+                が成り立つ．よって$f_0(x)=1$は一様連続である．
+            \end{proof}
+            \item $s<0$のとき$f_s(x)=x^s$は一様連続でないことの証明
+            \begin{proposition}
+                $s<0$のとき$f_s(x)=x^s$は一様連続でない．
+            \end{proposition}
+            \begin{proof}
+                $\delta>0$を任意にとる．$-s>0$であることに注意して，
+                \begin{equation}
+                    \left\{
+                        \begin{aligned}
+                            a&=1+\abs{s}^{\frac{1}{s}}\delta\\
+                            x&=y-\frac{\delta}{a}\ (>0)\\
+                            y&=\abs{\frac{a}{s\delta}}^{\frac{1}{s-1}}\ (>0)
+                        \end{aligned}
+                    \right.
+                \end{equation}
+                とすることができる．
+                \begin{proof}
+                    \begin{equation}
+                        x
+                        =y-\frac{\delta}{a}
+                        >0
+                    \end{equation}
+                    となる条件は，
+                    \begin{align}
+                        y=\abs{\frac{a}{s\delta}}^{\frac{1}{s-1}}&>\frac{\delta}{a}\\
+                        a^{\frac{s}{s-1}}
+                        &>\abs{s\delta}^{\frac{1}{s-1}}\delta\\
+                        &=\abs{s}^{\frac{1}{s-1}}\delta^{\frac{s}{s-1}}
+                    \end{align}
+                    であって$x \mapsto x^{s/(s-1)}$は単調増加だから，$a=1+\abs{s}^{1/s}\delta$はこれを満たす．
+                \end{proof}
+                また，$a>1$より$\abs{x-y}=\dfrac{\delta}{a}<\delta$である．
+                
+                $f_s(x)$は下に凸なので，任意の$u>0,v>0$に対して
+                \begin{equation}
+                    u^s\ge v^s+sv^{s-1}(u-v)
+                \end{equation}
+                が成り立つから，
+                \begin{align}
+                    \abs{f(x)-f(y)}
+                    &\ge\abs{sy^{s-1}(x-y)}\\
+                    &=\abs{s}\abs{\frac{a}{s\delta}}\frac{\delta}{a}\\
+                    &=1\\
+                    \therefore
+                    \abs{f(x)-f(y)}
+                    &\ge 1
+                \end{align}
+                が成り立つ．
+                よって$f_0(x)=1$は一様連続でない．
+            \end{proof}
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\end{document}
